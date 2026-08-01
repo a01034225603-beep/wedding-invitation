@@ -14,34 +14,6 @@ function toDigits(phone) {
   return phone.replace(/[^0-9]/g, "");
 }
 
-/* ---------- 떠다니는 하트/이모지 배경 ---------- */
-const FLOATING_EMOJIS = ["💕", "✨", "🤍"];
-const FLOATING_ITEM_COUNT = 7;
-
-function renderFloatingBackground() {
-  const container = document.getElementById("floating-bg");
-  if (!container) return;
-
-  for (let i = 0; i < FLOATING_ITEM_COUNT; i++) {
-    const span = el("span", "floating-item");
-    span.textContent =
-      FLOATING_EMOJIS[Math.floor(Math.random() * FLOATING_EMOJIS.length)];
-
-    const left = Math.random() * 100;
-    const duration = 16 + Math.random() * 10; // 16~26s (느리게)
-    const delay = Math.random() * 14; // 0~14s
-    const swayDuration = 3.5 + Math.random() * 2;
-    const size = 12 + Math.random() * 8; // 12~20px (작게)
-
-    span.style.left = `${left}%`;
-    span.style.fontSize = `${size}px`;
-    span.style.animationDuration = `${duration}s, ${swayDuration}s`;
-    span.style.animationDelay = `${delay}s, ${delay}s`;
-
-    container.appendChild(span);
-  }
-}
-
 /* ---------- 스크롤 등장 애니메이션 ---------- */
 function setupScrollReveal() {
   const targets = document.querySelectorAll("[data-reveal]");
@@ -368,7 +340,6 @@ function renderFooter() {
 
 /* ---------- 초기화 ---------- */
 function init() {
-  renderFloatingBackground();
   renderCover();
   renderGreeting();
   renderInfo();

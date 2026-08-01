@@ -44,48 +44,6 @@ img {
   max-width: 100%;
 }
 
-/* ===== 플로팅 배경 장식 (하트/이모지) ===== */
-.floating-bg {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
-}
-
-.floating-item {
-  position: absolute;
-  bottom: -10%;
-  font-size: 16px;
-  opacity: 0.28;
-  animation-name: floatUp, sway;
-  animation-timing-function: linear, ease-in-out;
-  animation-iteration-count: infinite, infinite;
-  will-change: transform;
-}
-
-@keyframes floatUp {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.3;
-  }
-  90% {
-    opacity: 0.2;
-  }
-  100% {
-    transform: translateY(-115vh) rotate(180deg);
-    opacity: 0;
-  }
-}
-
-@keyframes sway {
-  0%, 100% { margin-left: 0; }
-  50% { margin-left: 12px; }
-}
-
 /* ===== 스크롤 등장 애니메이션 ===== */
 .section {
   position: relative;

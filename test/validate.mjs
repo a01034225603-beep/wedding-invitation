@@ -75,4 +75,17 @@ check("표지 사진이 갤러리 목록에 포함된 실제 파일이다", () =
   assert.ok(fs.existsSync(p), "표지 사진 파일이 존재해야 합니다");
 });
 
+check("플로팅 하트 배경 요소가 index.html에 없다", () => {
+  const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+  assert.ok(!html.includes("floating-bg"), "floating-bg 요소가 남아있으면 안 됩니다");
+});
+
+check("플로팅 배경 렌더 함수가 main.js에 없다", () => {
+  const mainJs = fs.readFileSync(path.join(ROOT, "js", "main.js"), "utf8");
+  assert.ok(
+    !mainJs.includes("renderFloatingBackground"),
+    "renderFloatingBackground 관련 코드가 남아있으면 안 됩니다"
+  );
+});
+
 console.log(`\n총 ${passCount}개 검증 통과`);
