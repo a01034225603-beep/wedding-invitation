@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0" />
+<title>김재원 · 이예지 결혼합니다</title>
+<meta name="description" content="김재원, 이예지 결혼식에 초대합니다. 2026.10.17 (토) 오후 5시 20분, 까사그랑데" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Jua&family=Gaegu:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- 떠다니는 하트/이모지 배경 (장식용, 클릭 불가) -->
+  <div class="floating-bg" id="floating-bg" aria-hidden="true"></div>
+
+  <!-- 1. 표지 -->
+  <section id="cover" class="section cover">
+    <div class="cover-image" id="cover-image"></div>
+    <div class="cover-overlay"></div>
+    <div class="cover-content">
+      <p class="cover-eyebrow">✨ WEDDING INVITATION ✨</p>
+      <h1 class="cover-names" id="cover-names"></h1>
+      <p class="cover-date" id="cover-date"></p>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">↓</div>
+  </section>
+
+  <!-- 2. 인사말 -->
+  <section id="greeting" class="section greeting" data-reveal>
+    <p class="section-label">💌 INVITATION</p>
+    <div class="greeting-text" id="greeting-text"></div>
+    <div class="greeting-names" id="greeting-names"></div>
+  </section>
+
+  <!-- 3. 예식 안내 + 오시는 길 -->
+  <section id="info" class="section info" data-reveal>
+    <p class="section-label">📍 LOCATION</p>
+    <p class="info-datetime" id="info-datetime"></p>
+
+    <div class="calendar-card" id="calendar-card"></div>
+
+    <p class="info-venue" id="info-venue"></p>
+    <p class="info-address" id="info-address"></p>
+
+    <div class="map-embed" id="map-embed"></div>
+
+    <div class="map-buttons" id="map-buttons"></div>
+
+    <div class="directions" id="directions"></div>
+  </section>
+
+  <!-- 4. 갤러리 -->
+  <section id="gallery" class="section gallery" data-reveal>
+    <p class="section-label">📸 GALLERY</p>
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </section>
+
+  <!-- 5. 연락처 -->
+  <section id="contact" class="section contact" data-reveal>
+    <p class="section-label">💕 CONTACT</p>
+    <div class="contact-list" id="contact-list"></div>
+  </section>
+
+  <!-- 6. 마음 전하실 곳 (계좌) -->
+  <section id="accounts" class="section accounts" data-reveal>
+    <p class="section-label">🎁 ACCOUNT</p>
+    <button type="button" class="accordion-toggle" id="accounts-toggle">
+      마음 전하실 곳 <span class="chevron">▾</span>
+    </button>
+    <div class="accounts-panel" id="accounts-panel" hidden>
+      <p class="accounts-intro" id="accounts-intro"></p>
+      <div class="account-list" id="account-list"></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p id="footer-names">🩷</p>
+  </footer>
+
+  <!-- 라이트박스 -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button type="button" class="lightbox-close" id="lightbox-close" aria-label="닫기">✕</button>
+    <button type="button" class="lightbox-prev" id="lightbox-prev" aria-label="이전 사진">‹</button>
+    <img class="lightbox-image" id="lightbox-image" alt="" />
+    <button type="button" class="lightbox-next" id="lightbox-next" aria-label="다음 사진">›</button>
+  </div>
+
+  <!-- 복사 완료 토스트 -->
+  <div class="toast" id="toast" hidden></div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
