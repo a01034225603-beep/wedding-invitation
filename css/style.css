@@ -138,10 +138,10 @@ a {
 }
 
 .section-label {
-  font-family: var(--font-cute);
+  font-family: var(--font-display);
   font-size: 14px;
   letter-spacing: 2px;
-  color: var(--pink-deep);
+  color: var(--color-accent);
   font-weight: 400;
   margin: 0 0 20px;
 }
@@ -184,7 +184,7 @@ a {
 }
 
 .cover-eyebrow {
-  font-family: var(--font-cute);
+  font-family: var(--font-display);
   font-size: 13px;
   letter-spacing: 3px;
   opacity: 0.9;
@@ -192,7 +192,7 @@ a {
 }
 
 .cover-names {
-  font-family: var(--font-cute);
+  font-family: var(--font-display);
   font-size: 32px;
   font-weight: 400;
   margin: 0 0 12px;
@@ -238,19 +238,19 @@ a {
 }
 
 .greeting-names {
-  font-family: var(--font-cute);
+  font-family: var(--font-display);
   font-size: 15px;
-  color: var(--pink-deep);
+  color: var(--color-accent);
   letter-spacing: 0.5px;
 }
 
 /* ===== 3. 예식 안내 / 오시는 길 ===== */
 .info-datetime {
-  font-family: var(--font-cute);
+  font-family: var(--font-display);
   font-size: 19px;
   font-weight: 400;
   margin: 0 0 20px;
-  color: var(--pink-deep);
+  color: var(--color-accent);
 }
 
 /* ===== 월간 달력 카드 ===== */
@@ -264,7 +264,7 @@ a {
 }
 
 .calendar-month {
-  font-family: var(--font-cute);
+  font-family: var(--font-display);
   font-size: 15px;
   color: var(--color-ink);
   margin: 0 0 14px;
@@ -284,7 +284,7 @@ a {
 }
 
 .calendar-dow.sun {
-  color: var(--pink-deep);
+  color: var(--color-accent);
 }
 
 .calendar-day {
@@ -299,11 +299,11 @@ a {
 }
 
 .calendar-day.sun {
-  color: var(--pink-deep);
+  color: var(--color-accent);
 }
 
 .calendar-day.wedding-day {
-  background: var(--gradient-vivid);
+  background: var(--color-accent);
   color: #fff;
   font-weight: 700;
   position: relative;
@@ -319,9 +319,9 @@ a {
 }
 
 .calendar-dday {
-  font-family: var(--font-cute);
+  font-family: var(--font-display);
   font-size: 14px;
-  color: var(--pink-deep);
+  color: var(--color-accent);
   margin: 0;
 }
 
@@ -370,7 +370,7 @@ a {
   font-weight: 700;
   color: #fff;
   text-decoration: none;
-  background: var(--gradient-vivid);
+  background: var(--color-accent);
   box-shadow: 0 6px 14px rgba(255, 92, 138, 0.35);
   transition: transform 0.15s ease;
 }
@@ -396,7 +396,7 @@ a {
 .directions .direction-row .label {
   flex: none;
   width: 64px;
-  color: var(--pink-deep);
+  color: var(--color-accent);
   font-weight: 700;
 }
 
@@ -444,8 +444,8 @@ a {
 }
 
 .contact-row .who .role {
-  color: var(--pink-deep);
-  font-family: var(--font-cute);
+  color: var(--color-accent);
+  font-family: var(--font-display);
   font-size: 13px;
   margin-bottom: 2px;
 }
@@ -463,7 +463,7 @@ a {
 
 .icon-btn {
   border: none;
-  background: var(--gradient-vivid);
+  background: var(--color-accent);
   color: #fff;
   border-radius: 999px;
   padding: 9px 16px;
@@ -476,13 +476,13 @@ a {
 /* ===== 6. 계좌 ===== */
 .accordion-toggle {
   width: 100%;
-  border: 2px solid var(--pink);
+  border: 1px solid var(--color-accent);
   background: #fff;
   border-radius: 999px;
   padding: 14px 18px;
-  font-family: var(--font-cute);
+  font-family: var(--font-display);
   font-size: 15px;
-  color: var(--pink-deep);
+  color: var(--color-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -526,8 +526,8 @@ a {
 }
 
 .account-row .acc-info .acc-role {
-  color: var(--pink-deep);
-  font-family: var(--font-cute);
+  color: var(--color-accent);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: 13px;
   margin-bottom: 2px;
@@ -539,7 +539,7 @@ a {
 
 .copy-btn {
   border: none;
-  background: var(--gradient-vivid);
+  background: var(--color-accent);
   color: #fff;
   border-radius: 999px;
   padding: 7px 14px;
@@ -556,8 +556,8 @@ a {
 .footer {
   text-align: center;
   padding: 40px 24px 60px;
-  color: var(--pink-deep);
-  font-family: var(--font-cute);
+  color: var(--color-accent);
+  font-family: var(--font-display);
   font-size: 15px;
   letter-spacing: 1px;
 }
@@ -621,7 +621,7 @@ a {
   left: 50%;
   bottom: 40px;
   transform: translateX(-50%);
-  background: var(--gradient-vivid);
+  background: var(--color-accent);
   color: #fff;
   font-weight: 700;
   padding: 10px 22px;
