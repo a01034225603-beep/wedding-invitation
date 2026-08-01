@@ -1,23 +1,14 @@
 /* ===== 기본/리셋 ===== */
 :root {
-  --color-bg: #fff5fa;
-  --color-ink: #4a2b45;
-  --color-sub: #9b7c9c;
-  --color-accent: #ff5c8a;
-  --color-line: #ffd6e8;
-
-  --pink: #f2a6c2;
-  --pink-deep: #e2789f;
-  --orange: #f4c99b;
-  --purple: #c9b6e0;
-
-  --gradient-vivid: linear-gradient(135deg, var(--pink) 0%, var(--pink-deep) 100%);
-  --gradient-soft: linear-gradient(135deg, #ffeef5 0%, #fff6ec 100%);
+  --color-bg: #faf7f2;
+  --color-ink: #2f2f2c;
+  --color-sub: #857f74;
+  --color-accent: #40573f;
+  --color-line: #e2ddd0;
 
   --font-base: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
     "Malgun Gothic", "Noto Sans KR", sans-serif;
-  --font-cute: "Jua", var(--font-base);
-  --font-hand: "Gaegu", var(--font-base);
+  --font-display: "Song Myung", serif;
   --max-width: 480px;
 }
 
