@@ -579,3 +579,15 @@ a {
 .toast[hidden] {
   display: none;
 }
+
+/* ===== 스크롤 진행률 바 ===== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--color-accent);
+  z-index: 300;
+  pointer-events: none;
+}

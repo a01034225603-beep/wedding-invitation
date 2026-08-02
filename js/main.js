@@ -1,4 +1,5 @@
 import { weddingData } from "./data.js";
+import { calcScrollProgress } from "./utils.js";
 
 const PHOTOS_DIR = "photos/";
 
@@ -37,6 +38,32 @@ function setupScrollReveal() {
   );
 
   targets.forEach((t) => observer.observe(t));
+}
+
+/* ---------- 스크롤 진행률 바 ---------- */
+function setupScrollProgress() {
+  const bar = document.getElementById("scroll-progress");
+  if (!bar) return;
+
+  let ticking = false;
+  const update = () => {
+    const progress = calcScrollProgress(
+      window.scrollY,
+      document.documentElement.scrollHeight,
+      window.innerHeight
+    );
+    bar.style.width = `${progress}%`;
+    ticking = false;
+  };
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  });
+
+  update();
 }
 
 function showToast(message) {
@@ -351,6 +378,7 @@ function init() {
   renderAccounts();
   renderFooter();
   setupScrollReveal();
+  setupScrollProgress();
 }
 
 document.addEventListener("DOMContentLoaded", init);
