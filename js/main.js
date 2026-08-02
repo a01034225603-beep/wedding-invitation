@@ -618,6 +618,23 @@ function renderAccounts() {
   });
 }
 
+/* ---------- 9. 공유하기 ---------- */
+function renderShare() {
+  const copyBtn = document.getElementById("copy-link-btn");
+  if (copyBtn) {
+    copyBtn.addEventListener("click", async () => {
+      const ok = await copyToClipboard(window.location.href);
+      showToast(ok ? "링크가 복사되었습니다" : "복사에 실패했습니다");
+    });
+  }
+
+  // 카카오 공유 버튼: kakaoJsKey가 없으면 숨김 상태 유지 (SDK 연동은 키 발급 후 별도 작업)
+  const kakaoBtn = document.getElementById("kakao-share-btn");
+  if (kakaoBtn && weddingData.kakaoJsKey) {
+    kakaoBtn.hidden = false;
+  }
+}
+
 /* ---------- 푸터 ---------- */
 function renderFooter() {
   document.getElementById("footer-names").textContent =
@@ -634,6 +651,7 @@ function init() {
   renderContact();
   renderGuestbook();
   renderAccounts();
+  renderShare();
   renderFooter();
   setupScrollReveal();
   setupScrollProgress();
