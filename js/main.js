@@ -1,5 +1,5 @@
-import { weddingData } from "./data.js?v=20260802";
-import { calcScrollProgress, buildTypingFrames } from "./utils.js?v=20260802";
+import { weddingData } from "./data.js?v=20260803";
+import { calcScrollProgress, buildTypingFrames } from "./utils.js?v=20260803";
 
 const PHOTOS_DIR = "photos/";
 
@@ -358,22 +358,13 @@ function renderGallery() {
 }
 
 /* ---------- 5. 연락처 ---------- */
-function renderContact() {
-  const list = document.getElementById("contact-list");
+function openContactModal(title, people) {
+  document.getElementById("contact-modal-title").textContent = title;
+
+  const list = document.getElementById("contact-modal-list");
   list.innerHTML = "";
-
-  const people = [
-    { role: "신랑 아버지", name: weddingData.groom.father.name, phone: weddingData.groom.father.phone },
-    { role: "신랑 어머니", name: weddingData.groom.mother.name, phone: weddingData.groom.mother.phone },
-    { role: "신랑", name: weddingData.groom.name, phone: weddingData.groom.phone },
-    { role: "신부 아버지", name: weddingData.bride.father.name, phone: weddingData.bride.father.phone },
-    { role: "신부 어머니", name: weddingData.bride.mother.name, phone: weddingData.bride.mother.phone },
-    { role: "신부", name: weddingData.bride.name, phone: weddingData.bride.phone },
-  ];
-
   for (const person of people) {
     const row = el("div", "contact-row");
-    row.setAttribute("data-reveal", "");
 
     const who = el("div", "who");
     who.appendChild(el("div", "role", person.role));
@@ -393,6 +384,60 @@ function renderContact() {
     row.appendChild(actions);
     list.appendChild(row);
   }
+
+  document.getElementById("contact-modal").hidden = false;
+  document.body.style.overflow = "hidden";
+}
+
+function closeContactModal() {
+  document.getElementById("contact-modal").hidden = true;
+  document.body.style.overflow = "";
+}
+
+function renderContact() {
+  const list = document.getElementById("contact-list");
+  list.innerHTML = "";
+
+  const sides = [
+    {
+      label: "신랑측",
+      people: [
+        { role: "아버지", name: weddingData.groom.father.name, phone: weddingData.groom.father.phone },
+        { role: "어머니", name: weddingData.groom.mother.name, phone: weddingData.groom.mother.phone },
+        { role: "신랑", name: weddingData.groom.name, phone: weddingData.groom.phone },
+      ],
+    },
+    {
+      label: "신부측",
+      people: [
+        { role: "아버지", name: weddingData.bride.father.name, phone: weddingData.bride.father.phone },
+        { role: "어머니", name: weddingData.bride.mother.name, phone: weddingData.bride.mother.phone },
+        { role: "신부", name: weddingData.bride.name, phone: weddingData.bride.phone },
+      ],
+    },
+  ];
+
+  for (const side of sides) {
+    const card = el("button", "contact-side");
+    card.type = "button";
+    card.setAttribute("data-reveal", "");
+    card.appendChild(el("span", "contact-side-label", side.label));
+    card.appendChild(
+      el("span", "contact-side-names", side.people.map((p) => p.name).join(" · "))
+    );
+    card.appendChild(el("span", "contact-side-arrow", "›"));
+    card.addEventListener("click", () => openContactModal(side.label, side.people));
+    list.appendChild(card);
+  }
+
+  const modal = document.getElementById("contact-modal");
+  document.getElementById("contact-modal-close").addEventListener("click", closeContactModal);
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeContactModal();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (!modal.hidden && e.key === "Escape") closeContactModal();
+  });
 }
 
 /* ---------- 6. 계좌 ---------- */

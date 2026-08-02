@@ -441,6 +441,91 @@ a {
   box-shadow: 0 4px 10px rgba(var(--color-accent-rgb), 0.22);
 }
 
+.contact-side {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border: 2px solid var(--color-line);
+  border-radius: 18px;
+  padding: 18px 20px;
+  box-shadow: 0 4px 12px rgba(var(--color-ink-rgb), 0.06);
+  text-align: left;
+}
+
+.contact-side-label {
+  flex: none;
+  width: 64px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--color-accent);
+}
+
+.contact-side-names {
+  flex: 1;
+  font-size: 14px;
+  color: var(--color-ink);
+}
+
+.contact-side-arrow {
+  flex: none;
+  font-size: 20px;
+  color: var(--color-sub);
+}
+
+/* ===== 연락처 모달 ===== */
+.contact-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(var(--color-ink-rgb), 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 150;
+  padding: 24px;
+}
+
+.contact-modal[hidden] {
+  display: none;
+}
+
+.contact-modal-panel {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  background: var(--color-bg);
+  border-radius: 20px;
+  padding: 28px 20px 20px;
+  box-shadow: 0 12px 30px rgba(var(--color-ink-rgb), 0.25);
+}
+
+.contact-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: var(--color-sub);
+  padding: 8px;
+}
+
+.contact-modal-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--color-accent);
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.contact-modal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 /* ===== 6. 계좌 ===== */
 .accordion-toggle {
   width: 100%;
