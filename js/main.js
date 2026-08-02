@@ -1,4 +1,4 @@
-import { weddingData } from "./data.js?v=20260807";
+import { weddingData } from "./data.js?v=20260808";
 import {
   calcScrollProgress,
   buildTypingFrames,
@@ -6,7 +6,7 @@ import {
   buildRsvpPayload,
   validateGuestbookInput,
   buildGuestbookPayload,
-} from "./utils.js?v=20260807";
+} from "./utils.js?v=20260808";
 
 const PHOTOS_DIR = "photos/";
 
@@ -628,11 +628,31 @@ function renderShare() {
     });
   }
 
-  // 카카오 공유 버튼: kakaoJsKey가 없으면 숨김 상태 유지 (SDK 연동은 키 발급 후 별도 작업)
+  // 카카오 공유 버튼: kakaoJsKey가 없거나 SDK가 로드되지 않았으면 숨김 상태 유지
   const kakaoBtn = document.getElementById("kakao-share-btn");
-  if (kakaoBtn && weddingData.kakaoJsKey) {
-    kakaoBtn.hidden = false;
+  if (!kakaoBtn || !weddingData.kakaoJsKey || !window.Kakao) {
+    return;
   }
+
+  if (!window.Kakao.isInitialized()) {
+    window.Kakao.init(weddingData.kakaoJsKey);
+  }
+
+  kakaoBtn.hidden = false;
+  kakaoBtn.addEventListener("click", () => {
+    window.Kakao.Share.sendDefault({
+      objectType: "feed",
+      content: {
+        title: `${weddingData.groom.name} · ${weddingData.bride.name} 결혼식에 초대합니다`,
+        description: weddingData.dateDisplay,
+        imageUrl: new URL(`${PHOTOS_DIR}${weddingData.coverPhoto}`, window.location.href).href,
+        link: {
+          mobileWebUrl: window.location.href,
+          webUrl: window.location.href,
+        },
+      },
+    });
+  });
 }
 
 /* ---------- 푸터 ---------- */

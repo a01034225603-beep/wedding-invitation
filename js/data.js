@@ -37,7 +37,7 @@ export const weddingData = {
   // Google Apps Script 배포 URL. 배포 전에는 빈 문자열로 두면 폼이 안전하게 안내 토스트만 띄운다.
   appsScriptUrl: "https://script.google.com/macros/s/AKfycbw6DjVnT_UVRoCj2tRg9Uo770Uw8oFIlqnAHtKQ9c9RyTM1tDCdIHPtdg_ZJ2PSC32T_A/exec",
   // Kakao Developers JavaScript 키. 없으면 카카오 공유 버튼이 렌더링되지 않는다.
-  kakaoJsKey: "",
+  kakaoJsKey: "39fa0cd4fcca65d496e7d21203788329",
 
   greeting: [
     "서로의 일상에 작은 기쁨이 되어",
