@@ -1,4 +1,4 @@
-import { weddingData } from "./data.js?v=20260810";
+import { weddingData } from "./data.js?v=20260811";
 import {
   calcScrollProgress,
   buildTypingFrames,
@@ -6,7 +6,7 @@ import {
   buildRsvpPayload,
   validateGuestbookInput,
   buildGuestbookPayload,
-} from "./utils.js?v=20260810";
+} from "./utils.js?v=20260811";
 
 const PHOTOS_DIR = "photos/";
 
@@ -661,8 +661,39 @@ function renderFooter() {
     `🥂 ${weddingData.groom.name} · ${weddingData.bride.name} 🥂`;
 }
 
+/* ---------- 인트로 영상 ---------- */
+function setupIntroVideo() {
+  const overlay = document.getElementById("intro-overlay");
+  const video = document.getElementById("intro-video");
+  const skipBtn = document.getElementById("intro-skip");
+  if (!overlay || !video) return;
+
+  document.body.style.overflow = "hidden";
+
+  const finishIntro = () => {
+    if (overlay.classList.contains("intro-hidden")) return;
+    overlay.classList.add("intro-hidden");
+    document.body.style.overflow = "";
+    setTimeout(() => {
+      overlay.remove();
+    }, 800);
+  };
+
+  video.addEventListener("ended", finishIntro);
+  video.addEventListener("error", finishIntro);
+  if (skipBtn) {
+    skipBtn.addEventListener("click", finishIntro);
+  }
+
+  const playPromise = video.play();
+  if (playPromise && typeof playPromise.catch === "function") {
+    playPromise.catch(finishIntro);
+  }
+}
+
 /* ---------- 초기화 ---------- */
 function init() {
+  setupIntroVideo();
   renderCover().catch(console.error);
   renderGreeting();
   renderInfo();

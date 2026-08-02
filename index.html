@@ -12,9 +12,23 @@
   href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Cormorant+Garamond:wght@400;500;600&display=swap"
   rel="stylesheet"
 />
-<link rel="stylesheet" href="css/style.css?v=20260810" />
+<link rel="stylesheet" href="css/style.css?v=20260811" />
 </head>
 <body>
+  <!-- 인트로 영상 -->
+  <div class="intro-overlay" id="intro-overlay">
+    <video
+      class="intro-video"
+      id="intro-video"
+      src="videos/intro.mp4"
+      autoplay
+      muted
+      playsinline
+      preload="auto"
+    ></video>
+    <button type="button" class="intro-skip" id="intro-skip">건너뛰기</button>
+  </div>
+
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
   <!-- 1. 표지 -->
@@ -143,6 +157,6 @@
   <div class="toast" id="toast" hidden></div>
 
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.1/kakao.min.js"></script>
-  <script type="module" src="js/main.js?v=20260810"></script>
+  <script type="module" src="js/main.js?v=20260811"></script>
 </body>
 </html>
