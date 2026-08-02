@@ -24,7 +24,7 @@ export const weddingData = {
   },
 
   directions: {
-    transit: "지하철 2호선, 7호선 건대입구역 5번 출구 바로 앞",
+    transit: "지하철 2호선, 7호선 건대입구역 5번 출구",
     parking: "건물 내 B1~B5 주차 가능",
   },
 

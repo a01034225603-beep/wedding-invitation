@@ -88,7 +88,7 @@ a {
 .section {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 100px 28px;
+  padding: 88px 28px;
   text-align: center;
 }
 
@@ -98,7 +98,7 @@ a {
   letter-spacing: 4px;
   color: var(--color-accent);
   font-weight: 500;
-  margin: 0 0 34px;
+  margin: 0 0 28px;
 }
 
 /* ===== 1. 표지 ===== */
@@ -190,11 +190,11 @@ a {
   font-size: 16px;
   color: var(--color-ink);
   white-space: pre-line;
-  margin-bottom: 44px;
+  margin-bottom: 36px;
 }
 
 .greeting-text p {
-  margin: 0 0 20px;
+  margin: 0 0 14px;
 }
 
 .greeting-parents {
@@ -219,7 +219,7 @@ a {
   font-family: var(--font-display);
   font-size: 19px;
   font-weight: 400;
-  margin: 0 0 36px;
+  margin: 0 0 28px;
   color: var(--color-accent);
 }
 
@@ -229,7 +229,7 @@ a {
   border: 1px solid var(--color-line);
   border-radius: 20px;
   padding: 20px 16px 22px;
-  margin: 0 0 44px;
+  margin: 0 0 36px;
   box-shadow: 0 4px 14px rgba(var(--color-ink-rgb), 0.08);
 }
 
@@ -289,7 +289,7 @@ a {
 .map-embed {
   border-radius: 18px;
   overflow: hidden;
-  margin-bottom: 36px;
+  margin-bottom: 28px;
   box-shadow: 0 4px 14px rgba(var(--color-ink-rgb), 0.12);
 }
 
@@ -310,7 +310,7 @@ a {
 .info-address {
   font-size: 14px;
   color: var(--color-sub);
-  margin: 0 0 36px;
+  margin: 0 0 28px;
 }
 
 .map-buttons {
@@ -318,7 +318,7 @@ a {
   gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .map-btn {
@@ -350,7 +350,7 @@ a {
 .directions .direction-row {
   display: flex;
   gap: 10px;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
 .directions .direction-row .label {
@@ -421,7 +421,7 @@ a {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-padding: 0 15%;
-  gap: 14px;
+  gap: 10px;
   -webkit-overflow-scrolling: touch;
   margin: 0 -28px;
   padding-left: calc(15% + 28px);
@@ -447,7 +447,7 @@ a {
 .contact-list {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 16px;
 }
 
 .contact-row {
@@ -675,13 +675,13 @@ a {
 .accounts-intro {
   font-size: 13px;
   color: var(--color-sub);
-  margin: 0 0 24px;
+  margin: 0 0 20px;
 }
 
 .account-list {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
 }
 
 .account-row {
