@@ -1,5 +1,5 @@
-import { weddingData } from "./data.js";
-import { calcScrollProgress, buildTypingFrames } from "./utils.js";
+import { weddingData } from "./data.js?v=20260802";
+import { calcScrollProgress, buildTypingFrames } from "./utils.js?v=20260802";
 
 const PHOTOS_DIR = "photos/";
 
