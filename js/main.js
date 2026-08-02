@@ -1,5 +1,5 @@
 import { weddingData } from "./data.js";
-import { calcScrollProgress } from "./utils.js";
+import { calcScrollProgress, buildTypingFrames } from "./utils.js";
 
 const PHOTOS_DIR = "photos/";
 
@@ -13,6 +13,36 @@ function el(tag, className, html) {
 
 function toDigits(phone) {
   return phone.replace(/[^0-9]/g, "");
+}
+
+/* ---------- 타이핑 애니메이션 ---------- */
+function prefersReducedMotion() {
+  return (
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+}
+
+function typeText(target, text, speed = 55) {
+  return new Promise((resolve) => {
+    if (prefersReducedMotion()) {
+      target.textContent = text;
+      resolve();
+      return;
+    }
+
+    const frames = buildTypingFrames(text);
+    target.textContent = "";
+    let i = 0;
+    const timer = setInterval(() => {
+      target.textContent = frames[i];
+      i++;
+      if (i >= frames.length) {
+        clearInterval(timer);
+        resolve();
+      }
+    }, speed);
+  });
 }
 
 /* ---------- 스크롤 등장 애니메이션 ---------- */
@@ -101,13 +131,24 @@ async function copyToClipboard(text) {
 }
 
 /* ---------- 1. 표지 ---------- */
-function renderCover() {
+async function renderCover() {
   const coverImage = document.getElementById("cover-image");
   coverImage.style.backgroundImage = `url("${PHOTOS_DIR}${weddingData.coverPhoto}")`;
 
-  document.getElementById("cover-names").textContent =
-    `${weddingData.groom.name} · ${weddingData.bride.name}`;
-  document.getElementById("cover-date").textContent = weddingData.dateDisplay;
+  const eyebrowEl = document.querySelector(".cover-eyebrow");
+  const namesEl = document.getElementById("cover-names");
+  const dateEl = document.getElementById("cover-date");
+
+  const eyebrowText = eyebrowEl.textContent;
+  const namesText = `${weddingData.groom.name} · ${weddingData.bride.name}`;
+
+  dateEl.textContent = weddingData.dateDisplay;
+  dateEl.classList.add("cover-date-pending");
+
+  await typeText(eyebrowEl, eyebrowText);
+  await typeText(namesEl, namesText);
+
+  dateEl.classList.remove("cover-date-pending");
 }
 
 /* ---------- 2. 인사말 ---------- */

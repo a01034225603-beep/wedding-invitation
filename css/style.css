@@ -161,6 +161,11 @@ a {
   opacity: 0.92;
   margin: 0;
   letter-spacing: 0.5px;
+  transition: opacity 0.6s ease;
+}
+
+.cover-date-pending {
+  opacity: 0;
 }
 
 .scroll-cue {
