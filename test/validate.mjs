@@ -35,6 +35,25 @@ check("연락처가 실제 전화번호 형식이다", () => {
   assert.match(weddingData.bride.phone, /^010-\d{4}-\d{4}$/);
 });
 
+check("양가 부모님 성함/연락처가 실제 값으로 채워져 있다", () => {
+  const phoneRe = /^010-\d{4}-\d{4}$/;
+
+  assert.equal(weddingData.groom.father.name, "김옥현");
+  assert.match(weddingData.groom.father.phone, phoneRe);
+  assert.equal(weddingData.groom.mother.name, "차소영");
+  assert.match(weddingData.groom.mother.phone, phoneRe);
+
+  assert.equal(weddingData.bride.father.name, "이충원");
+  assert.match(weddingData.bride.father.phone, phoneRe);
+  assert.equal(weddingData.bride.mother.name, "김숙영");
+  assert.match(weddingData.bride.mother.phone, phoneRe);
+});
+
+check("신랑/신부 인사말용 이름(성 제외)이 채워져 있다", () => {
+  assert.equal(weddingData.groom.givenName, "재원");
+  assert.equal(weddingData.bride.givenName, "예지");
+});
+
 check("예식 일시/장소 정보가 채워져 있다", () => {
   assert.equal(weddingData.venue.name, "까사그랑데");
   assert.ok(weddingData.venue.address.includes("광진구"));

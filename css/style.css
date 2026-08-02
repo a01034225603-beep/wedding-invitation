@@ -197,6 +197,16 @@ a {
   margin: 0 0 20px;
 }
 
+.greeting-parents {
+  font-size: 14px;
+  color: var(--color-sub);
+  margin-bottom: 28px;
+}
+
+.greeting-parents p {
+  margin: 0 0 4px;
+}
+
 .greeting-names {
   font-family: var(--font-display);
   font-size: 15px;

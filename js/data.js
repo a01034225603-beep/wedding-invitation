@@ -2,11 +2,17 @@
 export const weddingData = {
   groom: {
     name: "김재원",
+    givenName: "재원",
     phone: "010-7333-5603",
+    father: { name: "김옥현", phone: "010-5611-5603" },
+    mother: { name: "차소영", phone: "010-4654-5603" },
   },
   bride: {
     name: "이예지",
+    givenName: "예지",
     phone: "010-2446-0253",
+    father: { name: "이충원", phone: "010-3766-3348" },
+    mother: { name: "김숙영", phone: "010-3203-0253" },
   },
 
   dateTimeISO: "2026-10-17T17:20:00+09:00",

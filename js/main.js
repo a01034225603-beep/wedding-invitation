@@ -165,6 +165,24 @@ function renderGreeting() {
     p.setAttribute("data-reveal", "");
     container.appendChild(p);
   }
+
+  const parentsContainer = document.getElementById("greeting-parents");
+  parentsContainer.innerHTML = "";
+  parentsContainer.appendChild(
+    el(
+      "p",
+      null,
+      `${weddingData.groom.father.name} · ${weddingData.groom.mother.name}의 장남 ${weddingData.groom.givenName}`
+    )
+  );
+  parentsContainer.appendChild(
+    el(
+      "p",
+      null,
+      `${weddingData.bride.father.name} · ${weddingData.bride.mother.name}의 장녀 ${weddingData.bride.givenName}`
+    )
+  );
+
   document.getElementById("greeting-names").textContent =
     `신랑 ${weddingData.groom.name} · 신부 ${weddingData.bride.name}`;
 }
@@ -345,7 +363,11 @@ function renderContact() {
   list.innerHTML = "";
 
   const people = [
+    { role: "신랑 아버지", name: weddingData.groom.father.name, phone: weddingData.groom.father.phone },
+    { role: "신랑 어머니", name: weddingData.groom.mother.name, phone: weddingData.groom.mother.phone },
     { role: "신랑", name: weddingData.groom.name, phone: weddingData.groom.phone },
+    { role: "신부 아버지", name: weddingData.bride.father.name, phone: weddingData.bride.father.phone },
+    { role: "신부 어머니", name: weddingData.bride.mother.name, phone: weddingData.bride.mother.phone },
     { role: "신부", name: weddingData.bride.name, phone: weddingData.bride.phone },
   ];
 
