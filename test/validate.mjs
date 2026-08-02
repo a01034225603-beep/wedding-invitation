@@ -107,4 +107,9 @@ check("플로팅 배경 렌더 함수가 main.js에 없다", () => {
   );
 });
 
+check("appsScriptUrl과 kakaoJsKey 필드가 문자열로 정의되어 있다 (배포 전에는 빈 문자열 허용)", () => {
+  assert.equal(typeof weddingData.appsScriptUrl, "string");
+  assert.equal(typeof weddingData.kakaoJsKey, "string");
+});
+
 console.log(`\n총 ${passCount}개 검증 통과`);
