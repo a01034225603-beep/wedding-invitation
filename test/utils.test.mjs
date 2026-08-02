@@ -6,6 +6,8 @@ import {
   buildTypingFrames,
   validateRsvpInput,
   buildRsvpPayload,
+  validateGuestbookInput,
+  buildGuestbookPayload,
 } from "../js/utils.js";
 
 let passCount = 0;
@@ -76,6 +78,23 @@ check("buildRsvpPayload는 참석일 때 인원을 숫자로 변환한다", () =
   const payload = buildRsvpPayload({ name: "홍길동", attending: "yes", guestCount: "3", meal: "yes" });
   assert.equal(payload.guestCount, 3);
   assert.equal(payload.meal, "yes");
+});
+
+check("validateGuestbookInput은 이름이 없으면 실패한다", () => {
+  const result = validateGuestbookInput({ name: "", message: "축하해요" });
+  assert.equal(result.valid, false);
+});
+
+check("validateGuestbookInput은 메시지가 없으면 실패한다", () => {
+  const result = validateGuestbookInput({ name: "홍길동", message: "   " });
+  assert.equal(result.valid, false);
+});
+
+check("buildGuestbookPayload는 이름/메시지 앞뒤 공백을 제거한다", () => {
+  const payload = buildGuestbookPayload({ name: " 홍길동 ", message: " 축하해요 " });
+  assert.equal(payload.name, "홍길동");
+  assert.equal(payload.message, "축하해요");
+  assert.equal(payload.type, "guestbook");
 });
 
 console.log(`\n총 ${passCount}개 검증 통과`);

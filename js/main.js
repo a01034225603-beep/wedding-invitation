@@ -4,6 +4,8 @@ import {
   buildTypingFrames,
   validateRsvpInput,
   buildRsvpPayload,
+  validateGuestbookInput,
+  buildGuestbookPayload,
 } from "./utils.js?v=20260804";
 
 const PHOTOS_DIR = "photos/";
@@ -499,6 +501,78 @@ function renderContact() {
   });
 }
 
+/* ---------- 7. 방명록 ---------- */
+function renderGuestbookEntries(entries) {
+  const list = document.getElementById("guestbook-list");
+  if (!list) return;
+  list.innerHTML = "";
+
+  if (!entries.length) {
+    list.appendChild(el("p", "guestbook-empty", "아직 남겨진 메시지가 없습니다."));
+    return;
+  }
+
+  for (const entry of entries) {
+    const item = el("div", "guestbook-item");
+    item.appendChild(el("div", "guestbook-name", entry.name));
+    item.appendChild(el("div", "guestbook-message", entry.message));
+    list.appendChild(item);
+  }
+}
+
+async function loadGuestbookEntries() {
+  if (!weddingData.appsScriptUrl) return;
+  try {
+    const res = await fetch(`${weddingData.appsScriptUrl}?type=guestbook`);
+    const data = await res.json();
+    renderGuestbookEntries(Array.isArray(data.entries) ? data.entries : []);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+function renderGuestbook() {
+  const form = document.getElementById("guestbook-form");
+  if (!form) return;
+
+  loadGuestbookEntries();
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const values = {
+      name: form.elements.name.value,
+      message: form.elements.message.value,
+    };
+
+    const validation = validateGuestbookInput(values);
+    if (!validation.valid) {
+      showToast(validation.error);
+      return;
+    }
+
+    if (!weddingData.appsScriptUrl) {
+      showToast("방명록 준비 중입니다. 잠시 후 다시 시도해주세요.");
+      return;
+    }
+
+    const payload = buildGuestbookPayload(values);
+    try {
+      await fetch(weddingData.appsScriptUrl, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload),
+      });
+      showToast("메시지가 등록되었습니다. 감사합니다!");
+      form.reset();
+      await loadGuestbookEntries();
+    } catch (err) {
+      console.error(err);
+      showToast("등록에 실패했습니다. 잠시 후 다시 시도해주세요.");
+    }
+  });
+}
+
 /* ---------- 6. 계좌 ---------- */
 function renderAccounts() {
   document.getElementById("accounts-intro").textContent = weddingData.accountsIntro;
@@ -548,6 +622,7 @@ function init() {
   renderRsvp();
   renderGallery();
   renderContact();
+  renderGuestbook();
   renderAccounts();
   renderFooter();
   setupScrollReveal();

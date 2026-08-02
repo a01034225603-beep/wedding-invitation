@@ -38,3 +38,21 @@ export function buildRsvpPayload({ name, attending, guestCount, meal }) {
     meal: attending === "yes" ? meal : "",
   };
 }
+
+export function validateGuestbookInput({ name, message }) {
+  if (!name || !name.trim()) {
+    return { valid: false, error: "이름을 입력해주세요." };
+  }
+  if (!message || !message.trim()) {
+    return { valid: false, error: "메시지를 입력해주세요." };
+  }
+  return { valid: true, error: "" };
+}
+
+export function buildGuestbookPayload({ name, message }) {
+  return {
+    type: "guestbook",
+    name: name.trim(),
+    message: message.trim(),
+  };
+}
