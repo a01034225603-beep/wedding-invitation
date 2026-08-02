@@ -32,6 +32,11 @@ function typeText(target, text, speed = 55) {
     }
 
     const frames = buildTypingFrames(text);
+    if (!frames.length) {
+      target.textContent = "";
+      resolve();
+      return;
+    }
     target.textContent = "";
     let i = 0;
     const timer = setInterval(() => {
@@ -411,7 +416,7 @@ function renderFooter() {
 
 /* ---------- 초기화 ---------- */
 function init() {
-  renderCover();
+  renderCover().catch(console.error);
   renderGreeting();
   renderInfo();
   renderGallery();
