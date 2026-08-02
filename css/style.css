@@ -352,17 +352,25 @@ a {
 
 /* ===== 4. 갤러리 ===== */
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 15%;
   gap: 14px;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 -28px;
+  padding-left: calc(15% + 28px);
+  padding-right: calc(15% + 28px);
 }
 
 .gallery-grid img {
-  width: 100%;
+  flex: 0 0 70%;
+  width: 70%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 14px;
-  box-shadow: 0 4px 10px rgba(74, 20, 60, 0.12);
+  box-shadow: 0 4px 10px rgba(var(--color-ink-rgb), 0.12);
+  scroll-snap-align: center;
   transition: transform 0.15s ease;
 }
 
