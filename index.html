@@ -11,7 +11,7 @@
   href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Cormorant+Garamond:wght@400;500;600&display=swap"
   rel="stylesheet"
 />
-<link rel="stylesheet" href="css/style.css?v=20260805" />
+<link rel="stylesheet" href="css/style.css?v=20260806" />
 </head>
 <body>
   <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
@@ -53,7 +53,13 @@
     <div class="directions" id="directions" data-reveal></div>
   </section>
 
-  <!-- 4. 참석의사 전달하기 -->
+  <!-- 4. 갤러리 -->
+  <section id="gallery" class="section gallery">
+    <p class="section-label" data-reveal>GALLERY</p>
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </section>
+
+  <!-- 5. 참석의사 전달하기 -->
   <section id="rsvp" class="section rsvp">
     <p class="section-label" data-reveal>RSVP</p>
     <p class="rsvp-intro" data-reveal>참석 여부를 알려주시면 준비에 큰 도움이 됩니다.</p>
@@ -71,12 +77,6 @@
       </select>
       <button type="submit">참석 의사 전달하기</button>
     </form>
-  </section>
-
-  <!-- 5. 갤러리 -->
-  <section id="gallery" class="section gallery">
-    <p class="section-label" data-reveal>GALLERY</p>
-    <div class="gallery-grid" id="gallery-grid"></div>
   </section>
 
   <!-- 6. 연락처 -->
@@ -141,6 +141,6 @@
   <!-- 복사 완료 토스트 -->
   <div class="toast" id="toast" hidden></div>
 
-  <script type="module" src="js/main.js?v=20260805"></script>
+  <script type="module" src="js/main.js?v=20260806"></script>
 </body>
 </html>
