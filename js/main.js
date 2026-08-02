@@ -1,5 +1,5 @@
-import { weddingData } from "./data.js?v=20260803";
-import { calcScrollProgress, buildTypingFrames } from "./utils.js?v=20260803";
+import { weddingData } from "./data.js?v=20260804";
+import { calcScrollProgress, buildTypingFrames } from "./utils.js?v=20260804";
 
 const PHOTOS_DIR = "photos/";
 
@@ -422,9 +422,6 @@ function renderContact() {
     card.type = "button";
     card.setAttribute("data-reveal", "");
     card.appendChild(el("span", "contact-side-label", side.label));
-    card.appendChild(
-      el("span", "contact-side-names", side.people.map((p) => p.name).join(" · "))
-    );
     card.appendChild(el("span", "contact-side-arrow", "›"));
     card.addEventListener("click", () => openContactModal(side.label, side.people));
     list.appendChild(card);

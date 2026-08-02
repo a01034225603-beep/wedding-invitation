@@ -445,6 +445,7 @@ a {
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
   background: #fff;
   border: 2px solid var(--color-line);
@@ -455,17 +456,9 @@ a {
 }
 
 .contact-side-label {
-  flex: none;
-  width: 64px;
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: 16px;
   color: var(--color-accent);
-}
-
-.contact-side-names {
-  flex: 1;
-  font-size: 14px;
-  color: var(--color-ink);
 }
 
 .contact-side-arrow {
