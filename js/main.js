@@ -340,11 +340,12 @@ function renderRsvp() {
 
     const payload = buildRsvpPayload(values);
     try {
-      await fetch(weddingData.appsScriptUrl, {
+      const res = await fetch(weddingData.appsScriptUrl, {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(payload),
       });
+      if (!res.ok) throw new Error(`RSVP 전송 실패: ${res.status}`);
       showToast("참석 의사가 전달되었습니다. 감사합니다!");
       form.reset();
       syncOptionalFields();
@@ -514,8 +515,15 @@ function renderGuestbookEntries(entries) {
 
   for (const entry of entries) {
     const item = el("div", "guestbook-item");
-    item.appendChild(el("div", "guestbook-name", entry.name));
-    item.appendChild(el("div", "guestbook-message", entry.message));
+
+    const nameEl = el("div", "guestbook-name");
+    nameEl.textContent = entry.name;
+    item.appendChild(nameEl);
+
+    const messageEl = el("div", "guestbook-message");
+    messageEl.textContent = entry.message;
+    item.appendChild(messageEl);
+
     list.appendChild(item);
   }
 }
@@ -524,6 +532,7 @@ async function loadGuestbookEntries() {
   if (!weddingData.appsScriptUrl) return;
   try {
     const res = await fetch(`${weddingData.appsScriptUrl}?type=guestbook`);
+    if (!res.ok) throw new Error(`방명록 조회 실패: ${res.status}`);
     const data = await res.json();
     renderGuestbookEntries(Array.isArray(data.entries) ? data.entries : []);
   } catch (err) {
@@ -558,11 +567,12 @@ function renderGuestbook() {
 
     const payload = buildGuestbookPayload(values);
     try {
-      await fetch(weddingData.appsScriptUrl, {
+      const res = await fetch(weddingData.appsScriptUrl, {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(payload),
       });
+      if (!res.ok) throw new Error(`방명록 등록 실패: ${res.status}`);
       showToast("메시지가 등록되었습니다. 감사합니다!");
       form.reset();
       await loadGuestbookEntries();
