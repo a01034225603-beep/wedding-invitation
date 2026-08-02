@@ -1,4 +1,4 @@
-import { weddingData } from "./data.js?v=20260814";
+import { weddingData } from "./data.js?v=20260815";
 import {
   calcScrollProgress,
   buildTypingFrames,
@@ -6,7 +6,7 @@ import {
   buildRsvpPayload,
   validateGuestbookInput,
   buildGuestbookPayload,
-} from "./utils.js?v=20260814";
+} from "./utils.js?v=20260815";
 
 const PHOTOS_DIR = "photos/";
 
@@ -666,6 +666,7 @@ function setupIntroVideo() {
   const overlay = document.getElementById("intro-overlay");
   const video = document.getElementById("intro-video");
   const skipBtn = document.getElementById("intro-skip");
+  const playBtn = document.getElementById("intro-play");
   if (!overlay || !video) return;
 
   document.body.style.overflow = "hidden";
@@ -679,10 +680,20 @@ function setupIntroVideo() {
     }, 800);
   };
 
+  const showPlayButton = () => {
+    if (playBtn) playBtn.hidden = false;
+  };
+
   video.addEventListener("ended", finishIntro);
   video.addEventListener("error", finishIntro);
   if (skipBtn) {
     skipBtn.addEventListener("click", finishIntro);
+  }
+  if (playBtn) {
+    playBtn.addEventListener("click", () => {
+      playBtn.hidden = true;
+      video.play().catch(finishIntro);
+    });
   }
 
   // 일부 인앱 브라우저(카카오톡 등)는 muted 속성만으로는 자동재생을 허용하지 않아
@@ -692,10 +703,18 @@ function setupIntroVideo() {
 
   const playPromise = video.play();
   if (playPromise && typeof playPromise.catch === "function") {
-    playPromise.catch(finishIntro);
+    playPromise.catch(showPlayButton);
   }
 
-  // 자동재생이 막혔는데도 error/ended 이벤트가 안 오는 경우를 대비한 안전장치
+  // play()는 성공했다고 나와도 실제로는 재생이 안 시작되는 인앱 브라우저가 있어
+  // 1초 뒤에도 여전히 멈춰있으면 재생 버튼을 보여준다.
+  setTimeout(() => {
+    if (video.paused && !overlay.classList.contains("intro-hidden")) {
+      showPlayButton();
+    }
+  }, 1000);
+
+  // 재생 버튼도 못 누를 만큼 뭔가 꼬인 경우를 대비한 최종 안전장치
   setTimeout(finishIntro, 8000);
 }
 
