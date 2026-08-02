@@ -1,4 +1,4 @@
-import { weddingData } from "./data.js?v=20260813";
+import { weddingData } from "./data.js?v=20260814";
 import {
   calcScrollProgress,
   buildTypingFrames,
@@ -6,7 +6,7 @@ import {
   buildRsvpPayload,
   validateGuestbookInput,
   buildGuestbookPayload,
-} from "./utils.js?v=20260813";
+} from "./utils.js?v=20260814";
 
 const PHOTOS_DIR = "photos/";
 
@@ -685,10 +685,18 @@ function setupIntroVideo() {
     skipBtn.addEventListener("click", finishIntro);
   }
 
+  // 일부 인앱 브라우저(카카오톡 등)는 muted 속성만으로는 자동재생을 허용하지 않아
+  // JS 프로퍼티로도 명시적으로 음소거해준다.
+  video.muted = true;
+  video.defaultMuted = true;
+
   const playPromise = video.play();
   if (playPromise && typeof playPromise.catch === "function") {
     playPromise.catch(finishIntro);
   }
+
+  // 자동재생이 막혔는데도 error/ended 이벤트가 안 오는 경우를 대비한 안전장치
+  setTimeout(finishIntro, 8000);
 }
 
 /* ---------- 초기화 ---------- */
