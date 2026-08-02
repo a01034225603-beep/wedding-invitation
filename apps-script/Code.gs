@@ -3,7 +3,7 @@
 // 아래 SHEET_ID를 실제 Google Sheet ID로 교체한 다음 웹 앱으로 배포한다.
 // (배포 절차는 별도 안내 문서 참고)
 
-const SHEET_ID = "YOUR_GOOGLE_SHEET_ID_HERE";
+const SHEET_ID = "1cC9_w7dZGtv8I_1GQTWWcpKrsGM5q8pUbI0DX4s6Zug";
 const RSVP_SHEET_NAME = "RSVP응답";
 const GUESTBOOK_SHEET_NAME = "방명록";
 
