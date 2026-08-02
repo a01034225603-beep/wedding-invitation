@@ -53,19 +53,39 @@
     <div class="directions" id="directions" data-reveal></div>
   </section>
 
-  <!-- 4. 갤러리 -->
+  <!-- 4. 참석의사 전달하기 -->
+  <section id="rsvp" class="section rsvp">
+    <p class="section-label" data-reveal>RSVP</p>
+    <p class="rsvp-intro" data-reveal>참석 여부를 알려주시면 준비에 큰 도움이 됩니다.</p>
+    <form class="rsvp-form" id="rsvp-form" data-reveal>
+      <input type="text" name="name" placeholder="이름" required />
+      <div class="rsvp-radio-group">
+        <label><input type="radio" name="attending" value="yes" checked /> 참석</label>
+        <label><input type="radio" name="attending" value="no" /> 불참</label>
+      </div>
+      <input type="number" name="guestCount" min="1" value="1" aria-label="참석 인원" />
+      <select name="meal" aria-label="식사 여부">
+        <option value="">식사 여부 (선택)</option>
+        <option value="yes">식사 예정</option>
+        <option value="no">식사 안 함</option>
+      </select>
+      <button type="submit">참석 의사 전달하기</button>
+    </form>
+  </section>
+
+  <!-- 5. 갤러리 -->
   <section id="gallery" class="section gallery">
     <p class="section-label" data-reveal>GALLERY</p>
     <div class="gallery-grid" id="gallery-grid"></div>
   </section>
 
-  <!-- 5. 연락처 -->
+  <!-- 6. 연락처 -->
   <section id="contact" class="section contact">
     <p class="section-label" data-reveal>CONTACT</p>
     <div class="contact-list" id="contact-list"></div>
   </section>
 
-  <!-- 6. 마음 전하실 곳 (계좌) -->
+  <!-- 8. 마음 전하실 곳 (계좌) -->
   <section id="accounts" class="section accounts">
     <p class="section-label" data-reveal>ACCOUNT</p>
     <button type="button" class="accordion-toggle" id="accounts-toggle" data-reveal>

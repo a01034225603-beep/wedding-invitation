@@ -1,7 +1,12 @@
 // js/utils.js 순수 함수 단위 테스트 (Node 내장 assert만 사용, DOM 불필요)
 // 실행: node test/utils.test.mjs
 import assert from "node:assert/strict";
-import { calcScrollProgress, buildTypingFrames } from "../js/utils.js";
+import {
+  calcScrollProgress,
+  buildTypingFrames,
+  validateRsvpInput,
+  buildRsvpPayload,
+} from "../js/utils.js";
 
 let passCount = 0;
 function check(name, fn) {
@@ -43,6 +48,34 @@ check("buildTypingFrames의 마지막 프레임은 원본 문자열과 같다", 
   const frames = buildTypingFrames(text);
   assert.equal(frames[frames.length - 1], text);
   assert.equal(frames.length, text.length);
+});
+
+check("validateRsvpInput은 이름이 없으면 실패한다", () => {
+  const result = validateRsvpInput({ name: "", attending: "yes", guestCount: "2" });
+  assert.equal(result.valid, false);
+});
+
+check("validateRsvpInput은 참석 인원이 1 미만이면 실패한다", () => {
+  const result = validateRsvpInput({ name: "홍길동", attending: "yes", guestCount: "0" });
+  assert.equal(result.valid, false);
+});
+
+check("validateRsvpInput은 불참일 때 인원 검증을 건너뛴다", () => {
+  const result = validateRsvpInput({ name: "홍길동", attending: "no", guestCount: "" });
+  assert.equal(result.valid, true);
+});
+
+check("buildRsvpPayload는 불참일 때 인원을 0으로, 이름 앞뒤 공백을 제거해 정규화한다", () => {
+  const payload = buildRsvpPayload({ name: " 홍길동 ", attending: "no", guestCount: "", meal: "" });
+  assert.equal(payload.name, "홍길동");
+  assert.equal(payload.guestCount, 0);
+  assert.equal(payload.type, "rsvp");
+});
+
+check("buildRsvpPayload는 참석일 때 인원을 숫자로 변환한다", () => {
+  const payload = buildRsvpPayload({ name: "홍길동", attending: "yes", guestCount: "3", meal: "yes" });
+  assert.equal(payload.guestCount, 3);
+  assert.equal(payload.meal, "yes");
 });
 
 console.log(`\n총 ${passCount}개 검증 통과`);

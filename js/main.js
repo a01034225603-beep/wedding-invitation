@@ -1,5 +1,10 @@
 import { weddingData } from "./data.js?v=20260804";
-import { calcScrollProgress, buildTypingFrames } from "./utils.js?v=20260804";
+import {
+  calcScrollProgress,
+  buildTypingFrames,
+  validateRsvpInput,
+  buildRsvpPayload,
+} from "./utils.js?v=20260804";
 
 const PHOTOS_DIR = "photos/";
 
@@ -291,6 +296,63 @@ function renderInfo() {
   }
 }
 
+/* ---------- 4. 참석의사 전달하기(RSVP) ---------- */
+function renderRsvp() {
+  const form = document.getElementById("rsvp-form");
+  if (!form) return;
+
+  const guestCountInput = form.querySelector('input[name="guestCount"]');
+  const mealSelect = form.querySelector('select[name="meal"]');
+
+  const syncOptionalFields = () => {
+    const attending = form.querySelector('input[name="attending"]:checked')?.value;
+    const isAttending = attending === "yes";
+    guestCountInput.disabled = !isAttending;
+    mealSelect.disabled = !isAttending;
+  };
+  form.querySelectorAll('input[name="attending"]').forEach((radio) => {
+    radio.addEventListener("change", syncOptionalFields);
+  });
+  syncOptionalFields();
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const values = {
+      name: form.elements.name.value,
+      attending: form.querySelector('input[name="attending"]:checked')?.value,
+      guestCount: guestCountInput.value,
+      meal: mealSelect.value,
+    };
+
+    const validation = validateRsvpInput(values);
+    if (!validation.valid) {
+      showToast(validation.error);
+      return;
+    }
+
+    if (!weddingData.appsScriptUrl) {
+      showToast("RSVP 접수 준비 중입니다. 잠시 후 다시 시도해주세요.");
+      return;
+    }
+
+    const payload = buildRsvpPayload(values);
+    try {
+      await fetch(weddingData.appsScriptUrl, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload),
+      });
+      showToast("참석 의사가 전달되었습니다. 감사합니다!");
+      form.reset();
+      syncOptionalFields();
+    } catch (err) {
+      console.error(err);
+      showToast("전송에 실패했습니다. 잠시 후 다시 시도해주세요.");
+    }
+  });
+}
+
 /* ---------- 4. 갤러리 + 라이트박스 ---------- */
 let currentPhotoIndex = 0;
 
@@ -483,6 +545,7 @@ function init() {
   renderCover().catch(console.error);
   renderGreeting();
   renderInfo();
+  renderRsvp();
   renderGallery();
   renderContact();
   renderAccounts();
