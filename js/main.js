@@ -89,6 +89,7 @@ function renderGreeting() {
   container.innerHTML = "";
   for (const line of weddingData.greeting) {
     const p = el("p", null, line);
+    p.setAttribute("data-reveal", "");
     container.appendChild(p);
   }
   document.getElementById("greeting-names").textContent =
@@ -231,6 +232,7 @@ function renderGallery() {
     img.src = `${PHOTOS_DIR}${file}`;
     img.loading = "lazy";
     img.alt = `갤러리 사진 ${index + 1}`;
+    img.setAttribute("data-reveal", "");
     img.addEventListener("click", () => openLightbox(index));
     grid.appendChild(img);
   });
@@ -276,6 +278,7 @@ function renderContact() {
 
   for (const person of people) {
     const row = el("div", "contact-row");
+    row.setAttribute("data-reveal", "");
 
     const who = el("div", "who");
     who.appendChild(el("div", "role", person.role));

@@ -56,8 +56,8 @@ img {
 
 [data-reveal] {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
 }
 
 [data-reveal].in-view {
@@ -98,7 +98,7 @@ a {
   letter-spacing: 4px;
   color: var(--color-accent);
   font-weight: 500;
-  margin: 0 0 20px;
+  margin: 0 0 28px;
 }
 
 /* ===== 1. 표지 ===== */
@@ -185,11 +185,11 @@ a {
   font-size: 16px;
   color: var(--color-ink);
   white-space: pre-line;
-  margin-bottom: 28px;
+  margin-bottom: 36px;
 }
 
 .greeting-text p {
-  margin: 0 0 6px;
+  margin: 0 0 14px;
 }
 
 .greeting-names {
@@ -204,7 +204,7 @@ a {
   font-family: var(--font-display);
   font-size: 19px;
   font-weight: 400;
-  margin: 0 0 20px;
+  margin: 0 0 28px;
   color: var(--color-accent);
 }
 
@@ -214,7 +214,7 @@ a {
   border: 1px solid var(--color-line);
   border-radius: 20px;
   padding: 20px 16px 22px;
-  margin: 0 0 28px;
+  margin: 0 0 36px;
   box-shadow: 0 4px 14px rgba(var(--color-ink-rgb), 0.08);
 }
 
@@ -274,7 +274,7 @@ a {
 .map-embed {
   border-radius: 18px;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: 28px;
   box-shadow: 0 4px 14px rgba(var(--color-ink-rgb), 0.12);
 }
 
@@ -295,7 +295,7 @@ a {
 .info-address {
   font-size: 14px;
   color: var(--color-sub);
-  margin: 0 0 20px;
+  margin: 0 0 28px;
 }
 
 .map-buttons {
@@ -335,7 +335,7 @@ a {
 .directions .direction-row {
   display: flex;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 .directions .direction-row .label {
@@ -349,7 +349,7 @@ a {
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
+  gap: 10px;
 }
 
 .gallery-grid img {
@@ -369,7 +369,7 @@ a {
 .contact-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .contact-row {
@@ -450,13 +450,13 @@ a {
 .accounts-intro {
   font-size: 13px;
   color: var(--color-sub);
-  margin: 0 0 16px;
+  margin: 0 0 20px;
 }
 
 .account-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
 }
 
 .account-row {
