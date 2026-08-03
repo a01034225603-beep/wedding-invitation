@@ -882,6 +882,26 @@ a {
   letter-spacing: 1px;
 }
 
+.intro-unmute {
+  position: absolute;
+  left: 20px;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-unmute[hidden] {
+  display: none;
+}
+
 .intro-play {
   position: absolute;
   top: 50%;

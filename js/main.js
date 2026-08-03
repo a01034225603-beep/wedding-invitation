@@ -1,4 +1,4 @@
-import { weddingData } from "./data.js?v=20260818";
+import { weddingData } from "./data.js?v=20260819";
 import {
   calcScrollProgress,
   buildTypingFrames,
@@ -6,7 +6,7 @@ import {
   buildRsvpPayload,
   validateGuestbookInput,
   buildGuestbookPayload,
-} from "./utils.js?v=20260818";
+} from "./utils.js?v=20260819";
 
 const PHOTOS_DIR = "photos/";
 
@@ -667,6 +667,7 @@ function setupIntroVideo() {
   const video = document.getElementById("intro-video");
   const skipBtn = document.getElementById("intro-skip");
   const playBtn = document.getElementById("intro-play");
+  const unmuteBtn = document.getElementById("intro-unmute");
   if (!overlay || !video) return;
 
   document.body.style.overflow = "hidden";
@@ -682,6 +683,7 @@ function setupIntroVideo() {
 
   const showPlayButton = () => {
     if (playBtn) playBtn.hidden = false;
+    if (unmuteBtn) unmuteBtn.hidden = true;
   };
 
   video.addEventListener("ended", finishIntro);
@@ -692,7 +694,16 @@ function setupIntroVideo() {
   if (playBtn) {
     playBtn.addEventListener("click", () => {
       playBtn.hidden = true;
+      // 사용자가 직접 탭한 시점이라 소리를 켜도 재생이 막히지 않는다.
+      video.muted = false;
+      if (unmuteBtn) unmuteBtn.hidden = true;
       video.play().catch(finishIntro);
+    });
+  }
+  if (unmuteBtn) {
+    unmuteBtn.addEventListener("click", () => {
+      video.muted = false;
+      unmuteBtn.hidden = true;
     });
   }
 
