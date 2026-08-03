@@ -1,4 +1,4 @@
-import { weddingData } from "./data.js?v=20260815";
+import { weddingData } from "./data.js?v=20260818";
 import {
   calcScrollProgress,
   buildTypingFrames,
@@ -6,7 +6,7 @@ import {
   buildRsvpPayload,
   validateGuestbookInput,
   buildGuestbookPayload,
-} from "./utils.js?v=20260815";
+} from "./utils.js?v=20260818";
 
 const PHOTOS_DIR = "photos/";
 
