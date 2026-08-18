@@ -1,4 +1,4 @@
-import { weddingData } from "./data.js?v=20260821";
+import { weddingData } from "./data.js?v=20260822";
 import {
   calcScrollProgress,
   buildTypingFrames,
