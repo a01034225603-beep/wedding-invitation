@@ -50,8 +50,12 @@ export const weddingData = {
     "직접 축하 전하지 못하는 분들을 위해 안내드립니다. 너그러운 마음으로 양해 부탁드립니다.",
 
   accounts: [
-    { role: "신랑", holder: "김재원", bank: "신한", number: "110-393-403899" },
-    { role: "신부", holder: "이예지", bank: "신한", number: "110-031-619449" },
+    { side: "groom", role: "신랑", holder: "김재원", bank: "신한", number: "110-393-403899" },
+    { side: "groom", role: "아버지", holder: "김옥현", bank: "기업은행", number: "064-077467-01-013" },
+    { side: "groom", role: "어머니", holder: "차소영", bank: "기업은행", number: "064-077233-01-014" },
+    { side: "bride", role: "신부", holder: "이예지", bank: "신한", number: "110-031-619449" },
+    { side: "bride", role: "아버지", holder: "이충원", bank: "SC제일은행", number: "151-20-174648" },
+    { side: "bride", role: "어머니", holder: "김숙영", bank: "신한", number: "110-455-921290" },
   ],
 
   coverPhoto: "001.jpg",

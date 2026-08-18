@@ -74,11 +74,16 @@ check("지도 링크 3종이 모두 https 링크다", () => {
   }
 });
 
-check("계좌 정보 2건(신랑/신부)이 존재한다", () => {
-  assert.equal(weddingData.accounts.length, 2);
+check("계좌 정보 6건(신랑/신랑 부모/신부/신부 부모)이 side 필드와 함께 존재한다", () => {
+  assert.equal(weddingData.accounts.length, 6);
   for (const acc of weddingData.accounts) {
-    assert.ok(acc.holder && acc.bank && acc.number);
+    assert.ok(acc.holder && acc.bank && acc.number, "holder/bank/number 필요");
+    assert.match(acc.side, /^(groom|bride)$/, "side는 groom 또는 bride");
   }
+  const groomCount = weddingData.accounts.filter((a) => a.side === "groom").length;
+  const brideCount = weddingData.accounts.filter((a) => a.side === "bride").length;
+  assert.equal(groomCount, 3, "신랑측 계좌는 3건(본인/아버지/어머니)");
+  assert.equal(brideCount, 3, "신부측 계좌는 3건(본인/아버지/어머니)");
 });
 
 check("갤러리 사진 28장이 정의되어 있고 실제 파일이 존재한다", () => {
