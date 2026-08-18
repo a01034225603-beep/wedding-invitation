@@ -116,13 +116,7 @@
   <!-- 8. 마음 전하실 곳 (계좌) -->
   <section id="accounts" class="section accounts">
     <p class="section-label" data-reveal>ACCOUNT</p>
-    <button type="button" class="accordion-toggle" id="accounts-toggle" data-reveal>
-      마음 전하실 곳 <span class="chevron">▾</span>
-    </button>
-    <div class="accounts-panel" id="accounts-panel" hidden>
-      <p class="accounts-intro" id="accounts-intro"></p>
-      <div class="account-list" id="account-list"></div>
-    </div>
+    <div class="contact-list" id="account-side-list"></div>
   </section>
 
   <!-- 9. 공유하기 -->
@@ -152,6 +146,16 @@
       <button type="button" class="contact-modal-close" id="contact-modal-close" aria-label="닫기">✕</button>
       <h3 class="contact-modal-title" id="contact-modal-title"></h3>
       <div class="contact-modal-list" id="contact-modal-list"></div>
+    </div>
+  </div>
+
+  <!-- 계좌 모달 -->
+  <div class="contact-modal" id="account-modal" hidden>
+    <div class="contact-modal-panel">
+      <button type="button" class="contact-modal-close" id="account-modal-close" aria-label="닫기">✕</button>
+      <h3 class="contact-modal-title" id="account-modal-title"></h3>
+      <p class="accounts-intro" id="account-modal-intro"></p>
+      <div class="contact-modal-list" id="account-modal-list"></div>
     </div>
   </div>
 
