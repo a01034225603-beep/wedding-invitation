@@ -447,7 +447,7 @@ a {
 .contact-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
 }
 
 .contact-row {
@@ -571,7 +571,7 @@ a {
 .contact-modal-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 /* ===== 방명록 ===== */
