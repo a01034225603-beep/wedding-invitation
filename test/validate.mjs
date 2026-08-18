@@ -86,8 +86,8 @@ check("계좌 정보 6건(신랑/신랑 부모/신부/신부 부모)이 side 필
   assert.equal(brideCount, 3, "신부측 계좌는 3건(본인/아버지/어머니)");
 });
 
-check("갤러리 사진 28장이 정의되어 있고 실제 파일이 존재한다", () => {
-  assert.equal(weddingData.gallery.length, 28);
+check("갤러리 사진 25장이 정의되어 있고 실제 파일이 존재한다", () => {
+  assert.equal(weddingData.gallery.length, 25);
   for (const file of weddingData.gallery) {
     const p = path.join(ROOT, "photos", file);
     assert.ok(fs.existsSync(p), `사진 파일 없음: ${file}`);
