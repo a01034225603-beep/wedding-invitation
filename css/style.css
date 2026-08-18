@@ -644,44 +644,10 @@ a {
 }
 
 /* ===== 6. 계좌 ===== */
-.accordion-toggle {
-  width: 100%;
-  border: 1px solid var(--color-accent);
-  background: #fff;
-  border-radius: 999px;
-  padding: 14px 18px;
-  font-family: var(--font-display);
-  font-size: 15px;
-  color: var(--color-accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-
-.chevron {
-  transition: transform 0.2s ease;
-}
-
-.accordion-toggle[aria-expanded="true"] .chevron {
-  transform: rotate(180deg);
-}
-
-.accounts-panel {
-  margin-top: 16px;
-  text-align: left;
-}
-
 .accounts-intro {
   font-size: 13px;
   color: var(--color-sub);
   margin: 0 0 20px;
-}
-
-.account-list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
 }
 
 .account-row {
