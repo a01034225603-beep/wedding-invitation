@@ -584,13 +584,13 @@ function renderGuestbook() {
 }
 
 /* ---------- 6. 계좌 ---------- */
-function renderAccounts() {
-  document.getElementById("accounts-intro").textContent = weddingData.accountsIntro;
+function openAccountModal(title, accounts) {
+  document.getElementById("account-modal-title").textContent = title;
+  document.getElementById("account-modal-intro").textContent = weddingData.accountsIntro;
 
-  const list = document.getElementById("account-list");
+  const list = document.getElementById("account-modal-list");
   list.innerHTML = "";
-
-  for (const acc of weddingData.accounts) {
+  for (const acc of accounts) {
     const row = el("div", "account-row");
 
     const info = el("div", "acc-info");
@@ -609,12 +609,42 @@ function renderAccounts() {
     list.appendChild(row);
   }
 
-  const toggle = document.getElementById("accounts-toggle");
-  const panel = document.getElementById("accounts-panel");
-  toggle.addEventListener("click", () => {
-    const isOpen = !panel.hidden;
-    panel.hidden = isOpen;
-    toggle.setAttribute("aria-expanded", String(!isOpen));
+  document.getElementById("account-modal").hidden = false;
+  document.body.style.overflow = "hidden";
+}
+
+function closeAccountModal() {
+  document.getElementById("account-modal").hidden = true;
+  document.body.style.overflow = "";
+}
+
+function renderAccounts() {
+  const list = document.getElementById("account-side-list");
+  list.innerHTML = "";
+
+  const sides = [
+    { key: "groom", label: "신랑측" },
+    { key: "bride", label: "신부측" },
+  ];
+
+  for (const side of sides) {
+    const accounts = weddingData.accounts.filter((acc) => acc.side === side.key);
+    const card = el("button", "contact-side");
+    card.type = "button";
+    card.setAttribute("data-reveal", "");
+    card.appendChild(el("span", "contact-side-label", side.label));
+    card.appendChild(el("span", "contact-side-arrow", "›"));
+    card.addEventListener("click", () => openAccountModal(side.label, accounts));
+    list.appendChild(card);
+  }
+
+  const modal = document.getElementById("account-modal");
+  document.getElementById("account-modal-close").addEventListener("click", closeAccountModal);
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeAccountModal();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (!modal.hidden && e.key === "Escape") closeAccountModal();
   });
 }
 
