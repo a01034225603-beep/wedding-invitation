@@ -20,6 +20,7 @@ export const weddingData = {
 
   venue: {
     name: "까사그랑데",
+    building: "건대입구역자이엘라 6층",
     address: "서울 광진구 자양동 2-2",
   },
 
