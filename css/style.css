@@ -401,9 +401,9 @@ a {
 }
 
 .subsection-label {
-  margin-top: 56px;
-  padding-top: 40px;
-  border-top: 1px solid var(--color-line);
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 2px dashed var(--color-line);
 }
 
 .rsvp-form button {
