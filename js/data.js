@@ -22,6 +22,8 @@ export const weddingData = {
     name: "까사그랑데",
     building: "건대입구역자이엘라 6층",
     address: "서울 광진구 자양동 2-2",
+    lat: 37.539181,
+    lng: 127.0696464,
   },
 
   directions: {

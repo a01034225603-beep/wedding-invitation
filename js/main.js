@@ -252,6 +252,29 @@ function renderCalendar() {
   container.appendChild(el("p", "calendar-dday", ddayText));
 }
 
+// 카카오맵(도메인 승인 필요)과 구글맵 비공식 임베드(일부 안드로이드 브라우저에서
+// net::ERR_BLOCKED_BY_RESPONSE로 차단) 모두 문제가 있어, 키가 필요 없는
+// Leaflet + OpenStreetMap 조합으로 임베드 지도를 렌더링한다.
+function renderMapEmbed() {
+  const container = document.getElementById("map-embed");
+  if (!container) return;
+  container.innerHTML = "";
+
+  const { lat, lng } = weddingData.venue;
+  if (typeof lat !== "number" || typeof lng !== "number" || !window.L) return;
+
+  const map = window.L.map(container, {
+    center: [lat, lng],
+    zoom: 17,
+    scrollWheelZoom: false,
+  });
+  window.L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 19,
+  }).addTo(map);
+  window.L.marker([lat, lng]).addTo(map);
+}
+
 function renderInfo() {
   document.getElementById("info-datetime").textContent = weddingData.dateDisplay;
   renderCalendar();
@@ -260,6 +283,7 @@ function renderInfo() {
     : weddingData.venue.name;
   document.getElementById("info-venue").textContent = venueLabel;
   document.getElementById("info-address").textContent = weddingData.venue.address;
+  renderMapEmbed();
   const mapButtons = document.getElementById("map-buttons");
   const labels = { naver: "네이버지도", google: "구글맵" };
   for (const [key, url] of Object.entries(weddingData.mapLinks)) {

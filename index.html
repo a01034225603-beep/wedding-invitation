@@ -13,6 +13,12 @@
   rel="stylesheet"
 />
 <link rel="stylesheet" href="css/style.css?v=20260901" />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+/>
 </head>
 <body>
   <!-- 인트로 영상 -->
@@ -62,6 +68,8 @@
 
     <p class="info-venue" id="info-venue" data-reveal></p>
     <p class="info-address" id="info-address" data-reveal></p>
+
+    <div class="map-embed" id="map-embed" data-reveal></div>
 
     <div class="map-buttons" id="map-buttons" data-reveal></div>
 
@@ -161,6 +169,11 @@
   <div class="toast" id="toast" hidden></div>
 
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.1/kakao.min.js"></script>
-  <script type="module" src="js/main.js?v=20260901"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script type="module" src="js/main.js?v=20260902"></script>
 </body>
 </html>
