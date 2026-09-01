@@ -68,7 +68,8 @@ check("dateTimeISO가 달력 렌더링에 사용 가능한 유효 날짜다", ()
   assert.equal(d.getDate(), 17);
 });
 
-check("지도 링크 3종이 모두 https 링크다", () => {
+check("지도 링크 2종(네이버/구글)이 모두 https 링크다", () => {
+  assert.deepEqual(Object.keys(weddingData.mapLinks), ["naver", "google"]);
   for (const url of Object.values(weddingData.mapLinks)) {
     assert.match(url, /^https:\/\//);
   }

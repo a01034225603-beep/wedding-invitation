@@ -1,4 +1,4 @@
-import { weddingData } from "./data.js?v=20260831";
+import { weddingData } from "./data.js?v=20260901";
 import {
   calcScrollProgress,
   buildTypingFrames,
@@ -252,48 +252,6 @@ function renderCalendar() {
   container.appendChild(el("p", "calendar-dday", ddayText));
 }
 
-let kakaoMapSdkPromise = null;
-
-function loadKakaoMapSdk() {
-  if (kakaoMapSdkPromise) return kakaoMapSdkPromise;
-  kakaoMapSdkPromise = new Promise((resolve, reject) => {
-    if (window.kakao?.maps) {
-      resolve(window.kakao);
-      return;
-    }
-    const script = document.createElement("script");
-    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${weddingData.kakaoJsKey}&autoload=false&libraries=services`;
-    script.onload = () => window.kakao.maps.load(() => resolve(window.kakao));
-    script.onerror = reject;
-    document.head.appendChild(script);
-  });
-  return kakaoMapSdkPromise;
-}
-
-// 구글맵 비공식 임베드(output=embed)는 삼성 인터넷 등 일부 안드로이드 브라우저의
-// 트래킹 차단 기능에 의해 net::ERR_BLOCKED_BY_RESPONSE로 로드가 막히는 사례가 있어
-// 카카오맵 JS SDK 기반 임베드로 교체.
-async function renderMapEmbed() {
-  const container = document.getElementById("map-embed");
-  if (!container) return;
-  container.innerHTML = "";
-
-  if (!weddingData.kakaoJsKey) return;
-
-  try {
-    const kakao = await loadKakaoMapSdk();
-    const geocoder = new kakao.maps.services.Geocoder();
-    geocoder.addressSearch(weddingData.venue.address, (result, status) => {
-      if (status !== kakao.maps.services.Status.OK || !result[0]) return;
-      const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-      const map = new kakao.maps.Map(container, { center: coords, level: 4 });
-      new kakao.maps.Marker({ map, position: coords });
-    });
-  } catch {
-    // SDK 로드 실패 시 지도는 생략하고 하단 지도 버튼으로 대체
-  }
-}
-
 function renderInfo() {
   document.getElementById("info-datetime").textContent = weddingData.dateDisplay;
   renderCalendar();
@@ -302,10 +260,8 @@ function renderInfo() {
     : weddingData.venue.name;
   document.getElementById("info-venue").textContent = venueLabel;
   document.getElementById("info-address").textContent = weddingData.venue.address;
-  renderMapEmbed();
-
   const mapButtons = document.getElementById("map-buttons");
-  const labels = { kakao: "카카오맵", naver: "네이버지도", google: "구글맵" };
+  const labels = { naver: "네이버지도", google: "구글맵" };
   for (const [key, url] of Object.entries(weddingData.mapLinks)) {
     const a = el("a", "map-btn", labels[key] ?? key);
     a.href = url;

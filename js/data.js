@@ -30,7 +30,6 @@ export const weddingData = {
   },
 
   mapLinks: {
-    kakao: "https://place.map.kakao.com/67986660",
     naver: "https://naver.me/GhbuXbYP",
     google: "https://maps.app.goo.gl/P7jsqGvjJuDqkLb48",
   },
