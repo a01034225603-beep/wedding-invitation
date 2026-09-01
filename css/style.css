@@ -34,8 +34,7 @@ body {
 
 .greeting,
 .info,
-.contact,
-.accounts {
+.contact {
   background: var(--color-bg);
 }
 
@@ -401,7 +400,7 @@ a {
   gap: 6px;
 }
 
-.guestbook-label {
+.subsection-label {
   margin-top: 56px;
   padding-top: 40px;
   border-top: 1px solid var(--color-line);
