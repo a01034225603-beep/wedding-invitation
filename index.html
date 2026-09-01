@@ -12,7 +12,7 @@
   href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Cormorant+Garamond:wght@400;500;600&display=swap"
   rel="stylesheet"
 />
-<link rel="stylesheet" href="css/style.css?v=20260901e" />
+<link rel="stylesheet" href="css/style.css?v=20260901f" />
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"
@@ -117,7 +117,10 @@
       <textarea name="message" placeholder="축하 메시지를 남겨주세요" required></textarea>
       <button type="submit">메시지 남기기</button>
     </form>
-    <div class="guestbook-list" id="guestbook-list"></div>
+    <button type="button" class="contact-side guestbook-view-btn" id="guestbook-view-btn" data-reveal>
+      <span class="contact-side-label" id="guestbook-view-label">방명록 보기</span>
+      <span class="contact-side-arrow">›</span>
+    </button>
   </section>
 
   <!-- 7. 공유하기 -->
@@ -160,6 +163,15 @@
     </div>
   </div>
 
+  <!-- 방명록 모달 -->
+  <div class="contact-modal" id="guestbook-modal" hidden>
+    <div class="contact-modal-panel">
+      <button type="button" class="contact-modal-close" id="guestbook-modal-close" aria-label="닫기">✕</button>
+      <h3 class="contact-modal-title">방명록</h3>
+      <div class="contact-modal-list guestbook-list" id="guestbook-modal-list"></div>
+    </div>
+  </div>
+
   <!-- 복사 완료 토스트 -->
   <div class="toast" id="toast" hidden></div>
 
@@ -169,6 +181,6 @@
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""
   ></script>
-  <script type="module" src="js/main.js?v=20260901e"></script>
+  <script type="module" src="js/main.js?v=20260901f"></script>
 </body>
 </html>

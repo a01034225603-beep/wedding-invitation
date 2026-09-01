@@ -515,7 +515,7 @@ function renderContact() {
 
 /* ---------- 7. 방명록 ---------- */
 function renderGuestbookEntries(entries) {
-  const list = document.getElementById("guestbook-list");
+  const list = document.getElementById("guestbook-modal-list");
   if (!list) return;
   list.innerHTML = "";
 
@@ -539,16 +539,33 @@ function renderGuestbookEntries(entries) {
   }
 }
 
+function updateGuestbookViewLabel(count) {
+  const label = document.getElementById("guestbook-view-label");
+  if (label) label.textContent = count > 0 ? `방명록 보기 (${count})` : "방명록 보기";
+}
+
 async function loadGuestbookEntries() {
   if (!weddingData.appsScriptUrl) return;
   try {
     const res = await fetch(`${weddingData.appsScriptUrl}?type=guestbook`);
     if (!res.ok) throw new Error(`방명록 조회 실패: ${res.status}`);
     const data = await res.json();
-    renderGuestbookEntries(Array.isArray(data.entries) ? data.entries : []);
+    const entries = Array.isArray(data.entries) ? data.entries : [];
+    renderGuestbookEntries(entries);
+    updateGuestbookViewLabel(entries.length);
   } catch (err) {
     console.error(err);
   }
+}
+
+function openGuestbookModal() {
+  document.getElementById("guestbook-modal").hidden = false;
+  document.body.style.overflow = "hidden";
+}
+
+function closeGuestbookModal() {
+  document.getElementById("guestbook-modal").hidden = true;
+  document.body.style.overflow = "";
 }
 
 function renderGuestbook() {
@@ -556,6 +573,17 @@ function renderGuestbook() {
   if (!form) return;
 
   loadGuestbookEntries();
+
+  const viewBtn = document.getElementById("guestbook-view-btn");
+  const modal = document.getElementById("guestbook-modal");
+  viewBtn.addEventListener("click", openGuestbookModal);
+  document.getElementById("guestbook-modal-close").addEventListener("click", closeGuestbookModal);
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeGuestbookModal();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (!modal.hidden && e.key === "Escape") closeGuestbookModal();
+  });
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();

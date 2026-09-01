@@ -614,8 +614,12 @@ a {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-top: 28px;
   text-align: left;
+}
+
+.contact-modal .guestbook-list {
+  max-height: 60vh;
+  overflow-y: auto;
 }
 
 .guestbook-item {
