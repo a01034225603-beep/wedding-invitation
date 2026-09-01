@@ -539,11 +539,6 @@ function renderGuestbookEntries(entries) {
   }
 }
 
-function updateGuestbookViewLabel(count) {
-  const label = document.getElementById("guestbook-view-label");
-  if (label) label.textContent = count > 0 ? `방명록 보기 (${count})` : "방명록 보기";
-}
-
 async function loadGuestbookEntries() {
   if (!weddingData.appsScriptUrl) return;
   try {
@@ -552,7 +547,6 @@ async function loadGuestbookEntries() {
     const data = await res.json();
     const entries = Array.isArray(data.entries) ? data.entries : [];
     renderGuestbookEntries(entries);
-    updateGuestbookViewLabel(entries.length);
   } catch (err) {
     console.error(err);
   }
